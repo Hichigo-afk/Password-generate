@@ -1,0 +1,40 @@
+from random import *
+digits = '0123456789'
+lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
+uppercase_letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+punctuation = '!#$%&*+-=?@^_'
+lst = []
+n = input('Cколько паролей сгенерировать?\n')
+length = input('Какой длины сгенерировать пароль?\n')
+dig = input('Включать ли цифры 0123456789?Введите Да(д) или Нет(н)\n')
+big_letters = input('Включать ли прописные буквы ABCDEFGHIJKLMNOPQRSTUVWXYZ?Введите Да(д) или Нет(н)\n')
+low_letters = input('Включать ли строчные буквы abcdefghijklmnopqrstuvwxyz?Введите Да(д) или Нет(н)\n')
+cha = input('Включать ли символы !#$%&*+-=?@^_?Введите Да(д) или Нет(н)\n')
+def generate_password(n):
+    if n in '0123456789':
+        n = int(n)
+        while n > 0:
+            chars = ''
+            if length in '0123456789':
+                b = int(length)
+                while b > 0:
+                    if dig in ("Да", "Д", "да", "д"):
+                        chars += choice(digits)
+                        b -= 1
+                    if big_letters in ("Да", "Д", "да", "д"):
+                        chars += choice(uppercase_letter)
+                        b -= 1
+                    if low_letters in ("Да", "Д", "да", "д"):
+                        chars += choice(uppercase_letter)
+                        b -= 1
+                    if cha in ("Да", "Д", "да", "д"):
+                        chars += choice(punctuation)
+                        b -= 1
+            else:
+                print("Введите, пожалуйста, число")
+            n -= 1
+            lst.append(chars)
+    else:
+        print("Введите, пожалуйста, число")
+    return '\n'.join(lst)
+print(generate_password(n))
